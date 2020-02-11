@@ -137,9 +137,8 @@ get-mcl:
 make-mcl:
 		@{ \
 				set -e; \
-				if [ ! -d $(MCLTMPDIR) ]; \
-					then mkdir -p $(MCLTMPDIR); \
-				fi; \
+				rm -rf $(MCLTMPDIR); \
+				mkdir -p $(MCLTMPDIR); \
 				cd $(MCLTMPDIR); \
 				cmake ..;  \
 				make;  \
@@ -148,7 +147,7 @@ do-install-mcl-ull:
 		@{ \
 				set -e; \
 				cd $(MCLTMPDIR); \
-				sudo make install; \
+				make install; \
 				ldconfig;  \
 		}
 install-mcl-ull: build-mcl do-install-mcl-ull
