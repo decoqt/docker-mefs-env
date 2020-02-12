@@ -43,7 +43,7 @@ else
 ROCKSDB_LIB_FLAG=-lrocksdb
 endif
 
-all: install-mcl-ull install-rocksdb
+all: install-mcl-ull install-rocksdb-ull
 
 ###############################################################################
 # download and install rocksdb
