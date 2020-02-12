@@ -85,25 +85,25 @@ make-rocksdb-static:
 		@EXTRA_CXXFLAGS=-DROCKSDB_NO_DYNAMIC_EXTENSION make -C $(RDBTMPDIR)/rocksdb-$(ROCKSDB_VER) -j8 static_lib
 ldconfig-rocksdb-lib-ull:
 		if [ $(OS) = Linux ]; then \
-				sudo sh -c "if [ ! -f $(LIBCONF_PATH) ]; \
+				sh -c "if [ ! -f $(LIBCONF_PATH) ]; \
 						then touch $(LIBCONF_PATH); \
 						fi"; \
-				sudo sh -c "if ! egrep -q '/usr/local/lib' $(LIBCONF_PATH); \
+				sh -c "if ! egrep -q '/usr/local/lib' $(LIBCONF_PATH); \
 						then echo '/usr/local/lib' >> $(LIBCONF_PATH); \
 						fi"; \
-				sudo ldconfig; \
+				ldconfig; \
 		fi
 install-rocksdb-lib-ull:
 		@{ \
 				set -e; \
-				sudo INSTALL_PATH=/usr/local make -C \
+				INSTALL_PATH=/usr/local make -C \
 						$(RDBTMPDIR)/rocksdb-$(ROCKSDB_VER) install-shared; \
 				rm -rf $(RDBTMPDIR); \
 		}
 install-rocksdb-lib-ull-static:
 		@{ \
 				set -e; \
-				sudo INSTALL_PATH=/usr/local make -C \
+				INSTALL_PATH=/usr/local make -C \
 				$(RDBTMPDIR)/rocksdb-$(ROCKSDB_VER) install-static; \
 				rm -rf $(RDBTMPDIR); \
   		}
