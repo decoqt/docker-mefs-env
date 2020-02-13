@@ -80,9 +80,9 @@ get-rocksdb:
 				tar xzvf $(RDBDIR)/v$(ROCKSDB_VER).tar.gz -C $(RDBTMPDIR); \
 		}
 make-rocksdb:
-		@EXTRA_CXXFLAGS=-DROCKSDB_NO_DYNAMIC_EXTENSION make -C $(RDBTMPDIR)/rocksdb-$(ROCKSDB_VER) -j8 shared_lib
+		@EXTRA_CXXFLAGS=-DROCKSDB_NO_DYNAMIC_EXTENSION make -C $(RDBTMPDIR)/rocksdb-$(ROCKSDB_VER) -j4 shared_lib
 make-rocksdb-static:
-		@EXTRA_CXXFLAGS=-DROCKSDB_NO_DYNAMIC_EXTENSION make -C $(RDBTMPDIR)/rocksdb-$(ROCKSDB_VER) -j8 static_lib
+		@EXTRA_CXXFLAGS=-DROCKSDB_NO_DYNAMIC_EXTENSION make -C $(RDBTMPDIR)/rocksdb-$(ROCKSDB_VER) -j4 static_lib
 ldconfig-rocksdb-lib-ull:
 		if [ $(OS) = Linux ]; then \
 				sh -c "if [ ! -f $(LIBCONF_PATH) ]; \
@@ -141,7 +141,7 @@ make-mcl:
 				mkdir -p $(MCLTMPDIR); \
 				cd $(MCLTMPDIR); \
 				cmake ..;  \
-				make;  \
+				make -j4;  \
 		}
 do-install-mcl-ull:
 		@{ \
