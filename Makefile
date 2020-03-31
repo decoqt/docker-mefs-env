@@ -131,7 +131,7 @@ get-mcl:
 		@{ \
 				set -e; \
 				if [ ! -d $(MCLDIR) ]; \
-					then git clone https://github.com/herumi/mcl.git; \
+					then git clone https://github.com/herumi/mcl.git --depth=1; \
 				fi;\
 		}
 make-mcl:
